@@ -41,74 +41,6 @@ app.get('/', (req, res) => {
 app.use('/api', router)      // all of our routes will be prefixed with /api
 
 
-//         // ---[ '/columInfo' ]-----------------------------------------------
-// router.route('/columInfo')
-
-// .get((req, res) => {  // Get all Records from DB
-//     console.log("Send all records to FE.")
-//     db.select().from('Profiles').columnInfo().then((data) => {
-//         res.send(data)
-//     }) 
-// })
-
-
-//         // ---[ '/singers' ]-----------------------------------------------
-// router.route('/singers')
-
-// .get((req, res) => {  // Get all Records from DB
-//     console.log("Send all records to FE.")
-//     db.select().from('Profiles').then((data) => {
-//         res.send(data)
-//     }) 
-// })
-
-// .post((req, res) => {  // Add One to the Database
-//     console.log( 'Data from FE:', req.body.name, " - ", req.body.country, " - ", req.body.email )
-//     db.insert({ name: req.body.name, country: req.body.country, email: req.body.email }).into('Profiles').then((data) => {
-//         res.send(data)
-//     }).catch( (error) => { res.send(error) })
-// })
-
-
-//         // ---[ '//singers/:email' ]-----------------------------------------------
-// router.route('/singers/:email')    // delete or Full-Update a singer record using 'email' ( URL: http://localhost:8080/api/singers/:email )
-
-// .delete( (req, res) => {  
-//     console.log("Delet User with email: ", req.params.email)
-//     db.select().from('Profiles').where('email', req.params.email).del().then((data) => {
-//         console.log("To Delete: ")
-//         res.send({ success: "Record deleted." })
-//     }) 
-// })
-
-// .put( (req, res) => {  
-//     console.log("Update User with email: ", req.params.email)
-//     console.log("Info: ", req.body.name, " - ", req.body.country, " - ", req.body.email)
-//     db.select().from('Profiles').where('email', req.params.email).update({ name: req.body.name, country: req.body.country, email: req.body.email }).then((data) => {
-//         console.log("Record Updated. ")
-//         res.send({ success: "Record Updated" })
-//     }) 
-// })
-
-
-//         // ---[ '//singers/:email' ]-----------------------------------------------
-// router.route('/singers/up/:email')    // delete or Full-Update a singer record using 'email' ( URL: http://localhost:8080/api/singers/:email )
-
-// .put( (req, res) => {  
-//     console.log("Up User with email: ", req.params.email)
-//     console.log("With data2: ", req.body )
-
-//     db.select().from('Profiles').where('email', req.params.email).update(req.body).then((data) => {
-//         console.log("Record Updated. ")
-//         res.send({ success: "Record Updated" })
-//     }) 
-// })
-
-
-
-
-
-
 
 
 
@@ -148,14 +80,29 @@ const theFun1 = () => {
                         }
 
                             // Loading the selected data to variables
-                        let cFullName = `${x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.GivenName} ${x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.Surname}`
-                        let cEmail = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
-                        let cCity = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.CityName
+                        // let cFullName = `${x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.GivenName} ${x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.Surname}`
+                        // let cEmail = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
+                        // let cCity = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.CityName
+
+                        let propertyCode = ''
+                        let sourceOfBussines = ''
+                        let DollarAmount = ''
+
 
                         console.log("\n----------------------------------")
-                        console.log("  Costumer Name: ", cFullName)
-                        console.log("  Costumer Email: ", cEmail)
-                        console.log("  Costumer City: ", cCity)
+                        console.log(" Property Code: ")
+                        console.log(" SourceOfBusiness: ")
+                        console.log(" DollarAmount: ")
+                        console.log(" EndDate (Departure): ")
+                        console.log(" GuestFirstName: ")
+                        console.log(" GuestLastName: ")
+                        console.log(" PhoneNumber: ")
+                        console.log(" Email : ")
+                        console.log(" PostalCode: ")
+                        console.log(" Points (To be calculated): ")
+                        console.log(" HotelReservationID: ")
+                        console.log(" ProcessDate: ")
+                        
                         console.log("----------------------------------")
                     })
                 } else {
@@ -180,11 +127,11 @@ const theFun1 = () => {
                     console.log("----------------------------------")
 
 
-                    console.log( '\n Creating new record on DataBase....')
-                    db.insert({ name: cFullName, country: cCity, email: cEmail }).into('Profiles').then((data) => {
-                        // res.send(data)
-                        console.log("Response from DB when creating new record: ", data)
-                    }).catch( (error) => { res.send(error) })
+                    // console.log( '\n Creating new record on DataBase....')
+                    // db.insert({ name: cFullName, country: cCity, email: cEmail }).into('Profiles').then((data) => {
+                    //     // res.send(data)
+                    //     console.log("Response from DB when creating new record: ", data)
+                    // }).catch( (error) => { res.send(error) })
                 }
 
                     // Copy last file on array to 02-Storage Directory
