@@ -88,7 +88,7 @@ const theFun1 = () => {
                         let sourceOfBussines = ''
                         let DollarAmount = ''
 
-
+                            // Preparin data for complete object to send to database..
                         console.log("\n----------------------------------")
                         console.log(" Property Code: ")
                         console.log(" SourceOfBusiness: ")
