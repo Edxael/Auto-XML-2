@@ -84,25 +84,50 @@ const theFun1 = () => {
                         // let cEmail = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
                         // let cCity = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.CityName
 
-                        let propertyCode = ''
-                        let sourceOfBussines = ''
-                        let DollarAmount = ''
+                        let propertyCode = jsOBJ.OTA_HotelStayInfoNotifRQ.StayInfos.HotelName
+                        let sourceOfBussines = x.HotelReservation.RoomStays.RoomStay.SourceOfBusiness
+                        let dollarAmount = x.RevenueCategories.RevenueCategory[0].SummaryAmount.Amount   // <-- Im asuming that the revenue category #9 is always on the index "0" of the array. // also later make it int
+                        let startDate = x.HotelReservation.RoomStays.RoomStay.TimeSpan.Start
+                        let endDate = x.HotelReservation.RoomStays.RoomStay.TimeSpan.End
+                        let guestFirstName = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.GivenName
+                        let guestLastName = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.Surname
+                        let phoneNumber = (x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Telephone) ? x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Telephone.PhoneNumber : "No Phone"
+                        let guestEmail = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
+                        let postalCode = x.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.PostalCode
+                        let hotelReservationID = x.HotelReservation.UniqueID.ID
+                        let processDate = jsOBJ.OTA_HotelStayInfoNotifRQ.TransactionIdentifier
+
 
                             // Preparin data for complete object to send to database..
+                        // console.log("\n----------------------------------")
+                        // console.log(" Property Code: ", propertyCode)
+                        // console.log(" SourceOfBusiness: ", sourceOfBussines)
+                        // console.log(" DollarAmount: ", dollarAmount)
+                        // console.log(" StartDate (Arival): ", startDate)
+                        // console.log(" EndDate (Departure): ", endDate)
+                        // console.log(" GuestFirstName: ", guestFirstName)
+                        // console.log(" GuestLastName: ", guestLastName)
+                        // console.log(" PhoneNumber: ", phoneNumber)
+                        // console.log(" Email: ", guestEmail)
+                        // console.log(" PostalCode: ", postalCode)
+                        // console.log(" HotelReservationID: ", hotelReservationID)
+                        // console.log(" ProcessDate: ", processDate)
+                        // console.log("----------------------------------")
+
+
                         console.log("\n----------------------------------")
-                        console.log(" Property Code: ")
-                        console.log(" SourceOfBusiness: ")
-                        console.log(" DollarAmount: ")
-                        console.log(" EndDate (Departure): ")
-                        console.log(" GuestFirstName: ")
-                        console.log(" GuestLastName: ")
-                        console.log(" PhoneNumber: ")
-                        console.log(" Email : ")
-                        console.log(" PostalCode: ")
-                        console.log(" Points (To be calculated): ")
-                        console.log(" HotelReservationID: ")
-                        console.log(" ProcessDate: ")
-                        
+                        console.log(" Property Code: ",typeof propertyCode)
+                        console.log(" SourceOfBusiness: ",typeof sourceOfBussines)
+                        console.log(" DollarAmount: ",typeof dollarAmount)
+                        console.log(" StartDate (Arival): ",typeof startDate)
+                        console.log(" EndDate (Departure): ",typeof endDate)
+                        console.log(" GuestFirstName: ",typeof guestFirstName)
+                        console.log(" GuestLastName: ",typeof guestLastName)
+                        console.log(" PhoneNumber: ",typeof phoneNumber)
+                        console.log(" Email: ",typeof guestEmail)
+                        console.log(" PostalCode: ",typeof postalCode)
+                        console.log(" HotelReservationID: ",typeof hotelReservationID)
+                        console.log(" ProcessDate: ",typeof processDate)
                         console.log("----------------------------------")
                     })
                 } else {
@@ -115,16 +140,34 @@ const theFun1 = () => {
                     }
 
 
-                    let cFullName = `${newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.GivenName} ${newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.Surname}`
-                    let cEmail = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
-                    let cCity = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.CityName
+                    let propertyCode = jsOBJ.OTA_HotelStayInfoNotifRQ.StayInfos.HotelName
+                    let sourceOfBussines = newRecords.HotelReservation.RoomStays.RoomStay.SourceOfBusiness
+                    let dollarAmount = newRecords.RevenueCategories.RevenueCategory[0].SummaryAmount.Amount   // <-- Im asuming that the revenue category #9 is always on the index "0" of the array. // also later make it int
+                    let startDate = newRecords.HotelReservation.RoomStays.RoomStay.TimeSpan.Start
+                    let endDate = newRecords.HotelReservation.RoomStays.RoomStay.TimeSpan.End
+                    let guestFirstName = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.GivenName
+                    let guestLastName = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.PersonName.Surname
+                    let phoneNumber = (newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Telephone) ? newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Telephone.PhoneNumber : "No Phone"
+                    let guestEmail = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Email.$t
+                    let postalCode = newRecords.HotelReservation.ResGuests.ResGuest.Profiles.ProfileInfo.Profile.Customer.Address.PostalCode
+                    let hotelReservationID = newRecords.HotelReservation.UniqueID.ID
+                    let processDate = jsOBJ.OTA_HotelStayInfoNotifRQ.TransactionIdentifier
 
                     console.log("\nThis file has: 1 Record.")
                     console.log("\n----------------------------------")
-                    console.log("  Costumer Name: ", cFullName)
-                    console.log("  Costumer Email: ", cEmail)
-                    console.log("  Costumer City: ", cCity)
-                    console.log("----------------------------------")
+                    console.log(" Property Code: ", propertyCode)
+                    console.log(" SourceOfBusiness: ", sourceOfBussines)
+                    console.log(" DollarAmount: ", dollarAmount)
+                    console.log(" StartDate (Arival): ", startDate)
+                    console.log(" EndDate (Departure): ", endDate)
+                    console.log(" GuestFirstName: ", guestFirstName)
+                    console.log(" GuestLastName: ", guestLastName)
+                    console.log(" PhoneNumber: ", phoneNumber)
+                    console.log(" Email: ", guestEmail)
+                    console.log(" PostalCode: ", postalCode)
+                    console.log(" HotelReservationID: ", hotelReservationID)
+                    console.log(" ProcessDate: ", processDate)
+                    console.log("---------------------------------- ")
 
 
                     // console.log( '\n Creating new record on DataBase....')
