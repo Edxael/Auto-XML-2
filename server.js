@@ -99,36 +99,31 @@ const theFun1 = () => {
 
 
                             // Preparin data for complete object to send to database..
-                        // console.log("\n----------------------------------")
-                        // console.log(" Property Code: ", propertyCode)
-                        // console.log(" SourceOfBusiness: ", sourceOfBussines)
-                        // console.log(" DollarAmount: ", dollarAmount)
-                        // console.log(" StartDate (Arival): ", startDate)
-                        // console.log(" EndDate (Departure): ", endDate)
-                        // console.log(" GuestFirstName: ", guestFirstName)
-                        // console.log(" GuestLastName: ", guestLastName)
-                        // console.log(" PhoneNumber: ", phoneNumber)
-                        // console.log(" Email: ", guestEmail)
-                        // console.log(" PostalCode: ", postalCode)
-                        // console.log(" HotelReservationID: ", hotelReservationID)
-                        // console.log(" ProcessDate: ", processDate)
-                        // console.log("----------------------------------")
-
-
                         console.log("\n----------------------------------")
-                        console.log(" Property Code: ",typeof propertyCode)
-                        console.log(" SourceOfBusiness: ",typeof sourceOfBussines)
-                        console.log(" DollarAmount: ",typeof dollarAmount)
-                        console.log(" StartDate (Arival): ",typeof startDate)
-                        console.log(" EndDate (Departure): ",typeof endDate)
-                        console.log(" GuestFirstName: ",typeof guestFirstName)
-                        console.log(" GuestLastName: ",typeof guestLastName)
-                        console.log(" PhoneNumber: ",typeof phoneNumber)
-                        console.log(" Email: ",typeof guestEmail)
-                        console.log(" PostalCode: ",typeof postalCode)
-                        console.log(" HotelReservationID: ",typeof hotelReservationID)
-                        console.log(" ProcessDate: ",typeof processDate)
+                        console.log(" Property Code: ", propertyCode)
+                        console.log(" SourceOfBusiness: ", sourceOfBussines)
+                        console.log(" DollarAmount: ", dollarAmount)
+                        console.log(" StartDate (Arival): ", startDate)
+                        console.log(" EndDate (Departure): ", endDate)
+                        console.log(" GuestFirstName: ", guestFirstName)
+                        console.log(" GuestLastName: ", guestLastName)
+                        console.log(" PhoneNumber: ", phoneNumber)
+                        console.log(" Email: ", guestEmail)
+                        console.log(" PostalCode: ", postalCode)
+                        console.log(" HotelReservationID: ", hotelReservationID)
+                        console.log(" ProcessDate: ", processDate)
                         console.log("----------------------------------")
+
+                        if(guestEmail === undefined){
+                            console.log("No Email... No Points..............................")
+                        }else{
+                            console.log( '\n Creating new record on DataBase....')
+                            db.insert({ name: `${guestFirstName} ${guestLastName}`, country: sourceOfBussines, email: guestEmail }).into('Profiles').then((data) => {
+                                console.log("Response from DB when creating new record: ", data.rowCount)
+                            }).catch( (error) => { console.log(error) })
+                        }
+
+                        console.log("-----------------------------------")
                     })
                 } else {
 
@@ -170,12 +165,17 @@ const theFun1 = () => {
                     console.log("---------------------------------- ")
 
 
-                    // console.log( '\n Creating new record on DataBase....')
-                    // db.insert({ name: cFullName, country: cCity, email: cEmail }).into('Profiles').then((data) => {
-                    //     // res.send(data)
-                    //     console.log("Response from DB when creating new record: ", data)
-                    // }).catch( (error) => { res.send(error) })
+                    if(guestEmail === undefined){
+                        console.log("No Email... No Points..............................")
+                    }else{
+                        console.log( '\n Creating new record on DataBase....')
+                        db.insert({ name: `${guestFirstName} ${guestLastName}`, country: sourceOfBussines, email: guestEmail }).into('Profiles').then((data) => {
+                            console.log("Response from DB when creating new record: ", data)
+                        }).catch( (error) => { console.log(error) })
+                    }
                 }
+
+
 
                     // Copy last file on array to 02-Storage Directory
                 fs.copyFile(`./01-FTP/${files[files.length -1]}`, `./02-Storage/${files[files.length -1]}`, (err) => {

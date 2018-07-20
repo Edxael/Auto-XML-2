@@ -6,7 +6,8 @@ const knex = require('knex')({
     client: 'pg',
     connection: {
         host: 'localhost',
-        database: 'Singers1',
+        // database: 'Singers1',
+        database: 'My1App-Exp',
         user: process.env.PG_User,
         password: process.env.PG_Pass
     }
