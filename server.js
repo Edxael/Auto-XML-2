@@ -164,14 +164,26 @@ const theFun1 = () => {
                     console.log(" ProcessDate: ", processDate)
                     console.log("---------------------------------- ")
 
+                    let myId = '53fe1c7b-53f3-4f57-9e12-10b2bb1fa15d'
+                    let myPass1 = '{"hash":"1IS0BQs4Ked7LbM+z21N1knr/5ZaXQLKVNFM7ydm0j+yCXAf2XPH3p7+JAxFq4vescHINHXfSrdHm4n9EHQ6RxEC","salt":"ELL9gKGlOGb7sd5/HGOszzqnf3JSjl5PYx4s4lxpqzXCKMjRKsHek57LlEBnfb6UJs2RurxGOFuHqqXXRig+TYRN","keyLength":66,"hashMethod":"pbkdf2","iterations":484119}'
+                    let creator1 = '73f32ab9-4ecb-4361-b945-4f9740c4033d'
+                    let updater1 ='e6135599-c6cb-4f20-bea0-b21d23011eb4'
 
                     if(guestEmail === undefined){
                         console.log("No Email... No Points..............................")
                     }else{
                         console.log( '\n Creating new record on DataBase....')
-                        db.insert({ name: `${guestFirstName} ${guestLastName}`, country: sourceOfBussines, email: guestEmail }).into('Profiles').then((data) => {
+                        // db.insert({ name: `${guestFirstName} ${guestLastName}`, country: sourceOfBussines, email: guestEmail }).into('users').then((data) => {
+                        db.insert({ id: myId, firstName: guestFirstName, lastName: guestLastName, password: myPass1, email: guestEmail, createdBy: creator1, updatedBy: updater1 }).into('users').then((data) => {
                             console.log("Response from DB when creating new record: ", data)
+
+                            db.insert({ userId: myId, role: 'user' }).into('user_roles').then((data) => {
+                                console.log("Response from DB when creating new record: ", data)
+                            }).catch( (error) => { console.log(error) })
+
                         }).catch( (error) => { console.log(error) })
+
+                        
                     }
                 }
 
